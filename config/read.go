@@ -47,6 +47,11 @@ func Read(fname string, comment, separator string, preSpace, postSpace bool) (*C
 	return _read(fname, New(comment, separator, preSpace, postSpace))
 }
 
+// Merge an ini file into the current config overriding options
+func (self *Config) Merge(fname string) (*Config, error) {
+	return _read(fname, self)
+}
+
 // ReadDefault reads a configuration file and returns its representation.
 // It uses values by default.
 func ReadDefault(fname string) (*Config, error) {
